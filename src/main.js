@@ -5,6 +5,7 @@ import router from './router'
 import api from './api/index'
 import { state } from './store'
 import { plugin, defaultConfig } from '@formkit/vue'
+import '@formkit/themes/genesis'
 
 
 const app = createApp(App)

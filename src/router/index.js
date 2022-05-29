@@ -7,9 +7,5 @@ const router = createRouter({
   routes,
 })
 
-// global interceptors
-router.beforeEach((to, from) => {
-  console.log(to, from)
-})
 
 export default router

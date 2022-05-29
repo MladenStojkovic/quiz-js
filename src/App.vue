@@ -1,8 +1,21 @@
 <script setup>
-import { ref, provide } from "vue";
+import { ref, provide, inject } from "vue";
+import { getDocs, setDoc, doc, collection } from "firebase/firestore";
+import { useRoute } from "vue-router";
 import firebase from "./api/firebase";
 let counter = ref(0);
 provide("firebase", firebase);
+
+const state = inject("state");
+const route = useRoute();
+async function getQuestions(db) {
+  const questionsCol = collection(db, "questions");
+  const questionsSnapshot = await getDocs(questionsCol);
+  const questionsList = questionsSnapshot.docs.map((doc) => doc.data());
+  state.setQuestions(JSON.parse(questionsList[0][1]));
+}
+
+getQuestions(firebase);
 
 setInterval(() => {
   counter.value++;
@@ -14,14 +27,14 @@ setInterval(() => {
     <header class="bg-white shadow" v-if="$route.meta.title">
       <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <h1 @click="counter = 0" class="text-3xl font-bold leading-tight text-gray-900">
-          {{ $route.meta.title }} / {{ counter }}
+          {{ $route.meta.title }} / {{ counter }} /// {{ state.correctAnswers }}
         </h1>
       </div>
     </header>
-    <main>
+    <main v-if="state.questions.length">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
-          <component :is="Component" />
+          <component :key="route.path" :is="Component" />
         </transition>
       </router-view>
     </main>
@@ -31,13 +44,11 @@ setInterval(() => {
 <style>
 .fade-enter-active,
 .fade-leave-active {
-  position: absolute;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-  position: absolute;
   opacity: 0;
 }
 </style>
