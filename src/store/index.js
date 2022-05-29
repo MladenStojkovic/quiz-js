@@ -9,10 +9,13 @@ export const state = reactive({
     this.user = payload
   },
   setQuestions(payload) {
-    this.questions = payload
+    this.questions = payload;
   },
   incrementAnswers() {
-    this.correctAnswers += 1
+    this.correctAnswers += 1;
+  },
+  resetAnswers() {
+    this.correctAnswers = 0;
   }
 })
 
