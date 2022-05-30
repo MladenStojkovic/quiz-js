@@ -1,5 +1,5 @@
 <script setup>
-import { inject, ref } from "vue";
+import { inject, onMounted, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
 const route = useRoute();

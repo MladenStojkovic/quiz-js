@@ -5,6 +5,10 @@ const routes = [
     meta: { title: 'Home' },
     component: () => import('@/views/Home.vue'),
   },
+  { path: '/track',
+    meta: { title: 'Track' },
+    component: () => import('@/views/Track.vue'),
+  },
   {
     path: '/quiz/:id',
     meta: { title: 'Quiz' },

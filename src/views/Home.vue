@@ -6,19 +6,27 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 const firebase = inject("firebase");
 const state = inject("state");
-let name = ref("");
+let firstName = ref("");
+let lastName = ref("");
+let position = ref("");
 let email = ref("");
+let isAvailable = ref(false);
+
+const allPositions = ["Frontend", "Backend", "Devops", "Quality assurance", "Designer"];
 
 const setUser = async () => {
   const user = {
-    name: name.value,
+    firstName: firstName.value,
+    lastName: lastName.value,
     email: email.value,
+    position: position.value,
+    isAvailable: isAvailable.value,
     points: 0,
   };
   const usersCol = collection(firebase, "users");
   await setDoc(doc(usersCol, email.value), user);
   state.setUser(user);
-  router.push("/quiz/1");
+  router.push("/track");
 };
 </script>
 
@@ -34,12 +42,29 @@ const setUser = async () => {
         <br />
       </h2>
       <FormKit @submit="setUser" type="form" :config="{ validationVisibility: 'submit' }">
-        <FormKit v-model="name" type="text" validation="required" label="Username" />
+        <FormKit
+          v-model="firstName"
+          type="text"
+          validation="required"
+          label="First Name"
+        />
+        <FormKit v-model="lastName" type="text" validation="required" label="Last Name" />
         <FormKit
           v-model="email"
           type="email"
           validation="required|*email"
           label="Email"
+        />
+        <FormKit
+          v-model="position"
+          type="select"
+          label="Position"
+          :options="allPositions"
+        />
+        <FormKit
+          v-model="isAvailable"
+          type="checkbox"
+          label="I wish to be contacted by HR representatives regarding job offers"
         />
       </FormKit>
     </div>

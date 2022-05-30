@@ -2,18 +2,25 @@
 import { inject } from "vue";
 import { collection, doc, setDoc } from "@firebase/firestore";
 import { useRouter } from "vue-router";
+const emit = defineEmits(["start-count"]);
 
 const firebase = inject("firebase");
 const state = inject("state");
+const counter = inject("counter");
 
 const saveInfo = async () => {
   const user = {
-    name: state.user.name,
+    firstName: state.user.firstName,
+    lastName: state.user.lastName,
+    position: state.user.position,
+    isAvailable: state.user.isAvailable,
     email: state.user.email,
     points: state.correctAnswers,
+    time: counter.value,
   };
   const usersCol = collection(firebase, "users");
   await setDoc(doc(usersCol, user.email), user);
+  emit("stop-count");
 };
 
 saveInfo();
