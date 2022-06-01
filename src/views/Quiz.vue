@@ -29,7 +29,7 @@ const submitAnswer = () => {
 </script>
 
 <template>
-  <div class="bg-gray-50">
+  <div>
     <div
       class="mx-auto max-w-screen-xl px-4 py-12 flex justify-center sm:px-6 lg:py-16 lg:px-8"
     >

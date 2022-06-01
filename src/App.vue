@@ -10,14 +10,11 @@ let counterId = ref("");
 
 provide("counter", counter);
 const startCount = () => {
-  counterId = setInterval(() => {
-    counter.value++;
-  }, 1000);
+  counter.value = Date.now();
 };
 
 const stopCount = () => {
-  clearInterval(counterId);
-  counter.value = 0;
+  counter.value = "";
 };
 
 const state = inject("state");
@@ -33,15 +30,7 @@ getQuestions(firebase);
 </script>
 
 <template>
-  <div>
-    <header class="bg-white shadow" v-if="$route.meta.title">
-      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <h1 @click="counter = 0" class="text-3xl font-bold leading-tight text-gray-900">
-          {{ $route.meta.title }} / {{ state.user.email }} / {{ state.correctAnswers }} /
-          {{ counter }}
-        </h1>
-      </div>
-    </header>
+  <div class="flex justify-end items-center h-screen mr-64">
     <main v-if="state.questions.length">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
@@ -54,6 +43,11 @@ getQuestions(firebase);
         </transition>
       </router-view>
     </main>
+    <div class="box">
+      <div class="wave -one"></div>
+      <div class="wave -two"></div>
+      <div class="wave -three"></div>
+    </div>
   </div>
 </template>
 

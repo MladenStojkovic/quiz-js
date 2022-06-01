@@ -13,6 +13,7 @@ const router = useRouter();
 let track = ref("");
 
 const getQuestions = async () => {
+  state.user.track = track.value;
   const questionsCol = collection(firebase, "questions");
   const questionsSnapshot = await getDocs(questionsCol);
   const questionsList = questionsSnapshot.docs.map((doc) => doc.data());
@@ -25,7 +26,7 @@ const getQuestions = async () => {
 </script>
 
 <template>
-  <div class="bg-gray-50">
+  <div>
     <div
       class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:flex lg:flex-col lg:items-center lg:justify-between lg:py-16 lg:px-8"
     >
@@ -39,6 +40,7 @@ const getQuestions = async () => {
         @submit="getQuestions"
         type="form"
         :config="{ validationVisibility: 'submit' }"
+        :actions="false"
       >
         <FormKit
           v-model="track"
@@ -46,6 +48,7 @@ const getQuestions = async () => {
           :options="['Frontend', 'Backend']"
           help="The timer starts ticking when you choose!"
         />
+        <FormKit type="submit" :disabled="!track" />
       </FormKit>
     </div>
   </div>
