@@ -64,5 +64,7 @@ const submitAnswer = () => {
 .formkit-legend {
   font-size: 22px !important;
   color: white !important;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 </style>
