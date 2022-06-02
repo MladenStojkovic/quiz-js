@@ -118,4 +118,8 @@ getQuestions(firebase);
     transform: rotateY(360deg);
   }
 }
+
+[data-type="select"]:not([data-multiple]) .formkit-inner:after {
+  content: none !important;
+}
 </style>
