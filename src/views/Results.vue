@@ -55,8 +55,8 @@ const reset = () => {
         <br />
       </h2>
       <p class="leading-9 tracking-tight text-white sm:text-2xl sm:leading-10 mb-5">
-        You answered {{ state.correctAnswers }} questions correctly in
-        {{ finalTime }} seconds
+        {{ state.user.firstName }}, Ypi answered {{ state.correctAnswers }} questions
+        correctly in {{ finalTime }} seconds
       </p>
       <p class="leading-9 tracking-tight text-white sm:text-2xl sm:leading-10 mb-5">
         Thank you for your time! - <em>Badin Soft :)</em>
