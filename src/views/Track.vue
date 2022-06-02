@@ -14,7 +14,9 @@ let track = ref("");
 
 const getQuestions = async () => {
   state.user.track = track.value;
-  const questionsCol = collection(firebase, "questions");
+
+  const questionType = `questions${track.value}`;
+  const questionsCol = collection(firebase, questionType);
   const questionsSnapshot = await getDocs(questionsCol);
   const questionsList = await questionsSnapshot.docs.map((doc) => doc.data());
   console.log(JSON.parse(questionsList[0][1]));
