@@ -31,7 +31,7 @@ const submitAnswer = () => {
 <template>
   <div>
     <div
-      class="mx-auto max-w-screen-xl px-4 py-12 flex justify-center sm:px-6 lg:py-16 lg:px-8"
+      class="custom text-xl mx-auto max-w-screen-xl px-4 py-12 flex justify-center sm:px-6 lg:py-16 lg:px-8"
     >
       <br />
       <FormKit type="form" @submit="submitAnswer" :actions="false">
@@ -41,15 +41,28 @@ const submitAnswer = () => {
           :options="question.choices"
           validation="required"
           :label="question.question"
-          help="Filler text"
         />
-        <FormKit type="submit" :disabled="!answer" />
+        <FormKit type="submit" :disabled="!answer" label="Next" />
       </FormKit>
-      <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-        <div class="inline-flex rounded-md shadow"></div>
+      <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0 testing">
+        <div class="inline-flex rounded-md testing1"></div>
       </div>
     </div>
   </div>
 </template>
 
-<style></style>
+<style>
+.formkit-fieldset {
+  padding: 50px !important;
+  border: 3px solid white !important;
+}
+
+[data-type="radio"] .formkit-option {
+  margin-bottom: 20px !important;
+}
+
+.formkit-legend {
+  font-size: 22px !important;
+  color: white !important;
+}
+</style>

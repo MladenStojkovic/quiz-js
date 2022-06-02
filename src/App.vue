@@ -3,6 +3,7 @@ import { ref, provide, inject } from "vue";
 import { getDocs, setDoc, doc, collection } from "firebase/firestore";
 import { useRoute } from "vue-router";
 import firebase from "./api/firebase";
+
 provide("firebase", firebase);
 
 let counter = ref(0);
@@ -30,7 +31,8 @@ getQuestions(firebase);
 </script>
 
 <template>
-  <div class="flex justify-end items-center h-screen mr-64">
+  <div class="flex justify-end items-center h-screen custom-main-wrapper">
+    <img src="../public/logo.png" class="logo" />
     <main v-if="state.questions.length">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
@@ -42,6 +44,25 @@ getQuestions(firebase);
           />
         </transition>
       </router-view>
+      <div class="waviy">
+        <span style="--i: 1">I</span>
+        <span style="--i: 2">t</span>
+        <span style="--i: 3; margin-right: 10px">'s</span>
+        <span style="--i: 4">A</span>
+        <span style="--i: 5">l</span>
+        <span style="--i: 6; margin-right: 10px">l</span>
+        <span style="--i: 7">A</span>
+        <span style="--i: 8">b</span>
+        <span style="--i: 9">o</span>
+        <span style="--i: 10">u</span>
+        <span style="--i: 11; margin-right: 10px">t</span>
+        <span style="--i: 12">P</span>
+        <span style="--i: 13">e</span>
+        <span style="--i: 14">o</span>
+        <span style="--i: 15">p</span>
+        <span style="--i: 16">l</span>
+        <span style="--i: 17">e</span>
+      </div>
     </main>
     <div class="box">
       <div class="wave -one"></div>
@@ -60,5 +81,41 @@ getQuestions(firebase);
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.custom-main-wrapper {
+  margin-right: 10%;
+}
+
+.logo {
+  position: fixed;
+  top: -55px;
+  left: 20px;
+  z-index: 9999;
+}
+
+.people {
+  color: white;
+  font-size: 2.25rem;
+}
+
+.waviy {
+  position: fixed;
+  right: 40px;
+  bottom: 20px;
+}
+.waviy span {
+  position: relative;
+  display: inline-block;
+  font-size: 40px;
+  color: #fff;
+  animation: flip 4s infinite;
+  animation-delay: calc(0.2s * var(--i));
+}
+@keyframes flip {
+  0%,
+  80% {
+    transform: rotateY(360deg);
+  }
 }
 </style>

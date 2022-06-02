@@ -33,7 +33,7 @@ const setUser = async () => {
 <template>
   <div>
     <div
-      class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:flex lg:flex-col lg:items-center lg:justify-between lg:py-16 lg:px-8"
+      class="custom mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:flex lg:flex-col lg:items-center lg:justify-between lg:py-16 lg:px-8"
     >
       <h2
         class="text-3xl mb-10 font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10"
@@ -99,7 +99,7 @@ body {
   left: 10%;
   background: #0af;
   width: 2000px;
-  height: 1300px;
+  height: 1570px;
   margin-left: -150px;
   margin-top: -250px;
   transform-origin: 50% 48%;
@@ -116,7 +116,7 @@ body {
 .wave.-two {
   animation: drift 3000ms infinite linear;
   opacity: 0.1;
-  background: black;
+  background: white;
   position: fixed;
 }
 
@@ -187,14 +187,14 @@ body {
   animation-delay: 0.4s;
 }
 
-.icon img {
+/* .icon img {
   -webkit-animation: anim 2s ease infinite;
   animation: anim 2s ease infinite;
   -webkit-transform: scale(0, 0) rotateZ(180deg);
   transform: scale(0, 0) rotateZ(180deg);
-}
+} */
 
-@-webkit-keyframes anim {
+/* @-webkit-keyframes anim {
   0% {
     -webkit-transform: scale(0, 0) rotateZ(-90deg);
     transform: scale(0, 0) rotateZ(-90deg);
@@ -215,8 +215,8 @@ body {
     transform: scale(0, 0) rotateZ(90deg);
     opacity: 0;
   }
-}
-
+} */
+/* 
 @keyframes anim {
   0% {
     -webkit-transform: scale(0, 0) rotateZ(-90deg);
@@ -238,5 +238,62 @@ body {
     transform: scale(0, 0) rotateZ(90deg);
     opacity: 0;
   }
+} */
+
+.custom,
+.custom h2,
+.custom .formkit-input {
+  color: white;
 }
+
+.custom .formkit-inner {
+  box-shadow: none;
+}
+
+.custom .formkit-input {
+  box-shadow: none;
+  border: 3px solid white;
+}
+
+.custom .formkit-decorator {
+  border: 3px solid white !important;
+  box-shadow: none !important;
+}
+
+.custom input[type="checkbox"].formkit-input ~ .formkit-decorator::before {
+  transition: border-color 0.2s ease-in-out;
+}
+
+.custom input[type="checkbox"].formkit-input:checked ~ .formkit-decorator::before {
+  border-color: white;
+}
+
+.custom .formkit-message {
+  color: white;
+}
+
+.custom [data-type="submit"] .formkit-input {
+  background-color: white;
+  color: #0e6cc4;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom [data-type="submit"] .formkit-input:hover {
+  background-color: #0e6cc4;
+  color: white;
+}
+
+.custom input[type="radio"].formkit-input:checked ~ .formkit-decorator::before {
+  background-color: white !important;
+  border-color: white !important;
+}
+
+.custom select.formkit-input option {
+  color: black !important;
+}
+
+/* .custom select.formkit-input:after {
+  color: white;
+} */
 </style>
