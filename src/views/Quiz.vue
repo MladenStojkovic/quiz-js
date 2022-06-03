@@ -10,9 +10,7 @@ if (!Object.keys(state.user).length) {
 let answer = ref("");
 
 let question = ref(state.questions[route.params.id - 1]);
-console.log(question);
 let formattedQuestion = ref(question.value.question.replace(/\\n/g, "<br />"));
-console.log(formattedQuestion.value);
 
 const submitAnswer = () => {
   if (answer.value === question.value.correct) {
@@ -60,6 +58,7 @@ const submitAnswer = () => {
 .formkit-fieldset {
   padding: 50px !important;
   border: 3px solid white !important;
+  min-width: 500px;
 }
 
 [data-type="radio"] .formkit-option {
