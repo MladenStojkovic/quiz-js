@@ -10,6 +10,9 @@ if (!Object.keys(state.user).length) {
 let answer = ref("");
 
 let question = ref(state.questions[route.params.id - 1]);
+console.log(question);
+let formattedQuestion = ref(question.value.question.replace(/\\n/g, "<br />"));
+console.log(formattedQuestion.value);
 
 const submitAnswer = () => {
   if (answer.value === question.value.correct) {
@@ -30,22 +33,24 @@ const submitAnswer = () => {
 
 <template>
   <div>
-    <div
-      class="custom text-xl mx-auto max-w-screen-xl px-4 py-12 flex justify-center sm:px-6 lg:py-16 lg:px-8"
-    >
-      <br />
-      <FormKit type="form" @submit="submitAnswer" :actions="false">
-        <FormKit
-          v-model="answer"
-          type="radio"
-          :options="question.choices"
-          validation="required"
-          :label="question.question"
-        />
-        <FormKit type="submit" :disabled="!answer" label="Next" />
-      </FormKit>
-      <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0 testing">
-        <div class="inline-flex rounded-md testing1"></div>
+    <div class="flex justify-end">
+      <div
+        class="custom text-xl mx-auto max-w-screen-xl px-4 py-12 flex flex-col justify-center items-center sm:px-6 lg:py-16 lg:px-8"
+      >
+        <br />
+        <p v-html="formattedQuestion" class="mb-5"></p>
+        <FormKit type="form" @submit="submitAnswer" :actions="false">
+          <FormKit
+            v-model="answer"
+            type="radio"
+            :options="question.choices"
+            validation="required"
+          />
+          <FormKit type="submit" :disabled="!answer" label="Next" />
+        </FormKit>
+        <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0 testing">
+          <div class="inline-flex rounded-md testing1"></div>
+        </div>
       </div>
     </div>
   </div>
