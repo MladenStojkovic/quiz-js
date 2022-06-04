@@ -32,6 +32,11 @@ const setUser = async () => {
 
 <template>
   <div>
+    <p
+      class="logo-text text-3xl mb-10 font-extrabold leading-9 tracking-tight text-white sm:text-4xl sm:leading-10"
+    >
+      Take the quiz and win a prize!
+    </p>
     <div
       class="custom mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:flex lg:flex-col lg:items-center lg:justify-between lg:py-16 lg:px-8"
     >
@@ -296,4 +301,11 @@ body {
 /* .custom select.formkit-input:after {
   color: white;
 } */
+
+.logo-text {
+  position: fixed;
+  left: 20px;
+  top: 140px;
+  z-index: 9999;
+}
 </style>
