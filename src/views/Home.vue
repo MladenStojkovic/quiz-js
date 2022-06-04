@@ -309,7 +309,7 @@ body {
   z-index: 9999;
   margin-top: 10%;
   margin-left: 10%;
-  font-size: 40px;
+  font-size: 60px;
   line-height: 4.5rem;
 }
 </style>
